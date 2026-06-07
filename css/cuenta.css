@@ -1,0 +1,190 @@
+/* =========================================
+   CUENTA.CSS — Estilos de cuenta.html
+   ========================================= */
+
+.acct-wrap {
+  max-width: 620px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ---- Sección genérica ---- */
+.acct-section {
+  background: var(--surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 26px 28px;
+  box-shadow: var(--shadow-sm);
+}
+
+.acct-section-header {
+  margin-bottom: 20px;
+}
+
+.acct-section-title {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.acct-section-desc {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+/* ---- Avatar row ---- */
+.acct-avatar-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.acct-avatar-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.acct-avatar {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: #3A4F63;
+  border: 3px solid var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-size: 34px;
+  font-weight: 600;
+  color: #E8F0F8;
+  overflow: hidden;
+  user-select: none;
+  line-height: 1;
+}
+
+.acct-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.acct-avatar-edit {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 26px;
+  height: 26px;
+  background: var(--accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #fff;
+  border: 2px solid var(--surface);
+  transition: background var(--transition);
+}
+.acct-avatar-edit:hover { background: var(--accent-light); }
+
+.acct-avatar-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.acct-username {
+  font-family: var(--font-serif);
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.acct-user-email {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.acct-avatar-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* ---- Email form row ---- */
+.acct-form-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+/* ---- Password fields ---- */
+.acct-pass-fields {
+  display: flex;
+  flex-direction: column;
+}
+
+.acct-pass-fields .form-group {
+  margin-bottom: 14px;
+}
+
+/* ---- Eye toggle ---- */
+.eye-wrap { position: relative; }
+.eye-wrap .form-control { padding-right: 42px; }
+
+.btn-eye {
+  position: absolute;
+  right: 11px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 3px;
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  transition: color var(--transition);
+  line-height: 0;
+}
+.btn-eye:hover { color: var(--text-muted); }
+.btn-eye svg { width: 18px; height: 18px; display: block; }
+.btn-eye .icon-eye-hide { display: none; }
+.btn-eye.visible .icon-eye-show { display: none; }
+.btn-eye.visible .icon-eye-hide { display: block; }
+
+/* ---- Zona de peligro ---- */
+.acct-danger-zone {
+  border-color: rgba(184, 84, 80, 0.4);
+}
+[data-theme="dark"] .acct-danger-zone {
+  border-color: rgba(184, 84, 80, 0.25);
+}
+.acct-danger-zone .acct-section-title {
+  color: var(--red);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 700px) {
+  .acct-section { padding: 20px 18px; }
+  .acct-avatar-row { gap: 16px; }
+  .acct-avatar { width: 70px; height: 70px; font-size: 28px; }
+}
+@media (max-width: 520px) {
+  .acct-avatar-row { flex-direction: column; align-items: flex-start; }
+  .acct-form-row   { flex-direction: column; align-items: stretch; }
+  .acct-form-row .btn { align-self: flex-start; }
+}

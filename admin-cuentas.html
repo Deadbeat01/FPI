@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gestión de cuentas — Admin</title>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <link rel="stylesheet" href="css/admin.css"/>
+</head>
+<body>
+<div class="admin-layout">
+  <aside class="admin-sidebar" id="admin-sidebar"></aside>
+
+  <main class="admin-main">
+    <div class="admin-page-header">
+      <h1 class="admin-page-title">Gestión de cuentas</h1>
+      <p class="admin-page-sub">Administra las cuentas de los docentes</p>
+    </div>
+
+    <div class="admin-section">
+      <div class="admin-section-header">
+        <span class="admin-section-title">Docentes registrados</span>
+        <div class="admin-search-wrap">
+          <span class="admin-search-icon">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14"><circle cx="6.5" cy="6.5" r="4.5"/><line x1="10" y1="10" x2="14" y2="14"/></svg>
+          </span>
+          <input type="text" class="admin-search-input" id="search-input"
+                 placeholder="Buscar por usuario…"
+                 oninput="filterAccounts()"/>
+        </div>
+      </div>
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Docente</th>
+              <th>Correo</th>
+              <th style="text-align:center">Estado</th>
+              <th>Registrado</th>
+              <th style="text-align:center">Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="accounts-tbody">
+            <tr><td colspan="5" style="text-align:center;padding:32px;color:var(--text-muted)">Cargando...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="js/app.js"></script>
+<script src="js/admin.js"></script>
+<script src="js/admin-cuentas.js"></script>
+</body>
+</html>

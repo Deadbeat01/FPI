@@ -1,0 +1,211 @@
+/* =========================================
+   SECCIONESPECIFICA.CSS — Estilos específicos
+   ========================================= */
+
+/* ---- Filtros extendidos ---- */
+.filter-select {
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--text);
+  background: var(--surface);
+  outline: none;
+  cursor: pointer;
+}
+.filter-select:focus { border-color: var(--accent); }
+
+/* ---- Notas con badges AD/A/B/C ---- */
+.grade-select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding: 4px 8px;
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  width: 60px;
+  outline: none;
+  transition: border-color var(--transition), background var(--transition);
+  background: var(--bg);
+}
+.grade-select:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.grade-select:focus { border-color: var(--accent); }
+
+/* Colores por valor de nota */
+.grade-select[data-val="AD"] { background: #D1FAE5; color: #065F46; border-color: #6EE7B7; }
+.grade-select[data-val="A"]  { background: #DBEAFE; color: #1E40AF; border-color: #93C5FD; }
+.grade-select[data-val="B"]  { background: #FEF3C7; color: #92400E; border-color: #FCD34D; }
+.grade-select[data-val="C"]  { background: #FEE2E2; color: #991B1B; border-color: #FCA5A5; }
+.grade-select[data-val="-"]  { background: var(--surface-alt); color: var(--text-light); border-color: var(--border); }
+
+/* Promedio badges (escala cualitativa) */
+.promedio-badge         { padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 700; letter-spacing: 0.3px; }
+
+/* ---- Fila en modo edición ---- */
+.student-row.editing-row { background: #F0F7FF !important; outline: 2px solid var(--accent); outline-offset: -2px; }
+.student-row.editing-row td { position: relative; }
+
+.row-name-input {
+  width: 100%;
+  min-width: 150px;
+  padding: 5px 8px;
+  border: 1.5px solid var(--accent);
+  border-radius: 6px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  background: #fff;
+  outline: none;
+}
+
+/* Botón guardar fila (check verde) */
+.btn-save-row {
+  background: #D1FAE5;
+  border: 1.5px solid #6EE7B7;
+  border-radius: 6px;
+  width: 30px; height: 30px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  color: #065F46;
+  transition: background var(--transition);
+  flex-shrink: 0;
+}
+.btn-save-row:hover { background: #A7F3D0; }
+
+/* ---- Cabecera de competencia en tabla ---- */
+.th-comp-header {
+  background: var(--accent-subtle) !important;
+  color: var(--accent) !important;
+  font-size: 11px !important;
+  letter-spacing: 0.5px;
+  text-align: center !important;
+}
+.th-comp-header span {
+  display: block;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* ---- Modal de gráfica ---- */
+#chart-modal .modal {
+  max-width: 900px;
+}
+#chart-modal .modal-header {
+  padding: 32px 40px 0;
+}
+#chart-modal .modal-body {
+  padding: 24px 40px 16px;
+}
+#chart-modal .modal-footer {
+  padding: 20px 40px 28px;
+}
+
+/* Pantallas normales: el modal se ajusta a su contenido, sin scroll */
+@media (min-height: 520px) {
+  #chart-modal .modal {
+    max-height: none;
+  }
+}
+
+/* ---- Tipo de actividad icons ---- */
+.act-type-picker {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+}
+.act-type-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 10px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  cursor: pointer;
+  transition: all var(--transition);
+  font-family: var(--font-sans);
+  font-size: 11.5px;
+  color: var(--text-muted);
+  min-width: 80px;
+}
+.act-type-btn svg { width: 22px; height: 22px; }
+.act-type-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-subtle); }
+.act-type-btn.selected { border-color: var(--accent); background: var(--accent); color: #fff; }
+
+/* ---- Filtro extra (nombre + promedio) ---- */
+.extra-filters {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-left: auto;
+}
+
+/* ---- Tab pills (reutilizado) ---- */
+.tab-pills { display: flex; gap: 6px; margin-bottom: 18px; }
+.tab-pill { padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border); background: var(--surface); font-size: 12.5px; cursor: pointer; color: var(--text-muted); transition: all var(--transition); font-family: var(--font-sans); }
+.tab-pill.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.tab-pill:hover:not(.active) { border-color: var(--accent); color: var(--accent); }
+
+/* Activity due date badge in list */
+.act-due {
+  display: inline-block;
+  padding: 1px 7px;
+  border-radius: 8px;
+  font-size: 11px;
+  background: var(--yellow-light);
+  color: var(--yellow);
+  font-weight: 500;
+}
+.act-type-icon { font-size: 14px; }
+
+/* Excel export button */
+.btn-excel {
+  background: #E8F5E9;
+  color: #2E7D32;
+  border: 1px solid #A5D6A7;
+}
+.btn-excel:hover { background: #2E7D32; color: #fff; }
+
+/* Row selected highlight */
+.row-selected { background: #EEF5FF !important; }
+[data-theme="dark"] .row-selected { background: #1A3252 !important; }
+
+/* Indicador de actividad vencida sin calificar */
+.overdue-dot {
+  display: inline-block;
+  width: 28px;
+  height: 14px;
+  border-radius: 4px;
+  background: #F87171;
+  vertical-align: middle;
+  opacity: 0.85;
+}
+[data-theme="dark"] .overdue-dot { background: #EF4444; opacity: 0.75; }
+
+/* Select vencido sin nota: borde rojo sutil */
+.grade-select.grade-overdue { border-color: #FCA5A5 !important; }
+[data-theme="dark"] .grade-select.grade-overdue { border-color: #B91C1C !important; }
+
+/* Dark mode editing row */
+[data-theme="dark"] .student-row.editing-row { background: #162840 !important; }
+
+/* Modo edición de fila: ocultar filtros y botones de la interfaz */
+.main-content.row-editing #header-actions,
+.main-content.row-editing .filters-bar,
+.main-content.row-editing .actions-bar,
+.main-content.row-editing .student-counter,
+.main-content.row-editing .export-bar { display: none !important; }

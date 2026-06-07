@@ -1,0 +1,200 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gestión Académica</title>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <link rel="stylesheet" href="css/login.css"/>
+</head>
+<body class="login-body">
+
+  <div class="login-wrap">
+
+    <!-- Branding -->
+    <div class="login-header">
+      <div class="lh-logo">GA</div>
+      <div class="lh-text">
+        <span class="lh-name">Gestión Académica</span>
+        <span class="lh-tagline">Plataforma de gestión educativa</span>
+      </div>
+    </div>
+
+    <!-- ===== MODAL 1: INICIAR SESIÓN ===== -->
+    <div class="lcard active" id="modal-login">
+      <h2 class="lcard-title">Iniciar sesión</h2>
+      <p class="lcard-sub">Ingresa tus credenciales para continuar</p>
+
+      <div class="form-group">
+        <label class="form-label">Usuario</label>
+        <input class="form-control" type="text" id="l-user"
+               placeholder="Nombre de usuario" autocomplete="username"
+               onkeydown="if(event.key==='Enter')document.getElementById('l-pass').focus()"/>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Contraseña</label>
+        <div class="eye-wrap">
+          <input class="form-control" type="password" id="l-pass"
+                 placeholder="Tu contraseña" autocomplete="current-password"
+                 onkeydown="if(event.key==='Enter')doLogin()"/>
+          <button class="btn-eye" type="button" onclick="toggleEye('l-pass',this)" tabindex="-1">
+            <svg class="icon-eye-show" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            <svg class="icon-eye-hide" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <button class="btn btn-primary btn-block" onclick="doLogin()">Iniciar sesión</button>
+
+      <div class="lcard-links">
+        <a class="llink" onclick="switchCard('modal-recover')">¿Olvidaste tu contraseña?</a>
+        <span class="llink-dot">·</span>
+        <a class="llink" onclick="switchCard('modal-register')">Crear cuenta</a>
+      </div>
+    </div>
+
+    <!-- ===== MODAL 2: CREAR CUENTA ===== -->
+    <div class="lcard" id="modal-register">
+      <button class="lcard-back" type="button" onclick="switchCard('modal-login')">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="10 4 6 8 10 12"/></svg>
+        Volver
+      </button>
+      <h2 class="lcard-title">Crear cuenta</h2>
+      <p class="lcard-sub">Completa los datos para registrarte</p>
+
+      <div class="form-group">
+        <label class="form-label">Usuario *</label>
+        <input class="form-control" type="text" id="r-user" placeholder="Elige un nombre de usuario"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Correo electrónico *</label>
+        <input class="form-control" type="email" id="r-email" placeholder="correo@gmail.com"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Contraseña *</label>
+        <div class="eye-wrap">
+          <input class="form-control" type="password" id="r-pass" placeholder="Mínimo 6 caracteres"/>
+          <button class="btn-eye" type="button" onclick="toggleEye('r-pass',this)" tabindex="-1">
+            <svg class="icon-eye-show" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            <svg class="icon-eye-hide" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Confirmar contraseña *</label>
+        <div class="eye-wrap">
+          <input class="form-control" type="password" id="r-pass2" placeholder="Repite tu contraseña"
+                 onkeydown="if(event.key==='Enter')doRegister()"/>
+          <button class="btn-eye" type="button" onclick="toggleEye('r-pass2',this)" tabindex="-1">
+            <svg class="icon-eye-show" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            <svg class="icon-eye-hide" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <button class="btn btn-primary btn-block" onclick="doRegister()">Crear cuenta</button>
+
+      <div class="lcard-links">
+        <a class="llink" onclick="switchCard('modal-login')">¿Ya tienes cuenta? Iniciar sesión</a>
+      </div>
+    </div>
+
+    <!-- ===== MODAL 3: RECUPERAR CONTRASEÑA ===== -->
+    <div class="lcard" id="modal-recover">
+      <button class="lcard-back" type="button" onclick="switchCard('modal-login')">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="10 4 6 8 10 12"/></svg>
+        Volver
+      </button>
+      <div class="lcard-icon lcard-icon-yellow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="26" height="26"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+      </div>
+      <h2 class="lcard-title">Recuperar contraseña</h2>
+      <p class="lcard-sub">Ingresa tu correo y te enviaremos un código de verificación</p>
+
+      <div class="form-group">
+        <label class="form-label">Correo electrónico</label>
+        <input class="form-control" type="email" id="rec-email" placeholder="correo@gmail.com"
+               onkeydown="if(event.key==='Enter')doRecover()"/>
+      </div>
+
+      <button class="btn btn-primary btn-block" onclick="doRecover()">Enviar código</button>
+
+      <div class="lcard-links">
+        <a class="llink" onclick="switchCard('modal-login')">Volver al inicio de sesión</a>
+      </div>
+    </div>
+
+    <!-- ===== MODAL 4: INGRESAR CÓDIGO ===== -->
+    <div class="lcard" id="modal-code">
+      <div class="lcard-icon lcard-icon-blue">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="26" height="26"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </div>
+      <h2 class="lcard-title">Ingresar código</h2>
+      <p class="lcard-sub">Enviamos un código de 6 dígitos a<br/><strong id="code-email-lbl" class="lcard-highlight"></strong></p>
+
+      <div class="code-inputs">
+        <input class="code-digit" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]" autocomplete="one-time-code"/>
+        <input class="code-digit" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]"/>
+        <input class="code-digit" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]"/>
+        <input class="code-digit" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]"/>
+        <input class="code-digit" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]"/>
+        <input class="code-digit" type="text" inputmode="numeric" maxlength="1" pattern="[0-9]"/>
+      </div>
+
+      <button class="btn btn-primary btn-block" onclick="doVerifyCode()">Verificar código</button>
+
+      <div class="lcard-links">
+        <a class="llink" onclick="doResendCode()">Reenviar código</a>
+        <span class="llink-dot">·</span>
+        <a class="llink" onclick="switchCard('modal-recover')">Cambiar correo</a>
+      </div>
+    </div>
+
+    <!-- ===== MODAL 5: RESTABLECER CONTRASEÑA ===== -->
+    <div class="lcard" id="modal-reset">
+      <div class="lcard-icon lcard-icon-green">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="26" height="26"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h2 class="lcard-title">Restablecer contraseña</h2>
+      <p class="lcard-sub">Código verificado. Crea tu nueva contraseña.</p>
+
+      <div class="form-group">
+        <label class="form-label">Correo electrónico</label>
+        <input class="form-control form-readonly" type="email" id="reset-email" readonly tabindex="-1"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Usuario</label>
+        <input class="form-control form-readonly" type="text" id="reset-user" readonly tabindex="-1"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Nueva contraseña *</label>
+        <div class="eye-wrap">
+          <input class="form-control" type="password" id="reset-pass" placeholder="Mínimo 6 caracteres"/>
+          <button class="btn-eye" type="button" onclick="toggleEye('reset-pass',this)" tabindex="-1">
+            <svg class="icon-eye-show" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            <svg class="icon-eye-hide" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Confirmar nueva contraseña *</label>
+        <div class="eye-wrap">
+          <input class="form-control" type="password" id="reset-pass2" placeholder="Repite la nueva contraseña"
+                 onkeydown="if(event.key==='Enter')doReset()"/>
+          <button class="btn-eye" type="button" onclick="toggleEye('reset-pass2',this)" tabindex="-1">
+            <svg class="icon-eye-show" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            <svg class="icon-eye-hide" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <button class="btn btn-primary btn-block" onclick="doReset()">Restablecer contraseña</button>
+    </div>
+
+  </div><!-- /login-wrap -->
+
+  <script src="js/app.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mi cuenta — Gestión Académica</title>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <link rel="stylesheet" href="css/cuenta.css"/>
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <main class="main-content">
+    <div class="breadcrumb">
+      <span>Configuración</span>
+      <span class="breadcrumb-sep">›</span>
+      <span>Mi cuenta</span>
+    </div>
+
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Mi cuenta</h1>
+        <p class="page-subtitle">Gestiona tu información personal y seguridad</p>
+      </div>
+    </div>
+
+    <div class="acct-wrap">
+
+      <!-- ===== FOTO DE PERFIL ===== -->
+      <div class="acct-section">
+        <div class="acct-section-header">
+          <div class="acct-section-title">Foto de perfil</div>
+          <div class="acct-section-desc">Se muestra en la barra lateral de navegación</div>
+        </div>
+        <div class="acct-avatar-row">
+          <div class="acct-avatar-wrap">
+            <div class="acct-avatar" id="acct-avatar"></div>
+            <label class="acct-avatar-edit" for="avatar-input" title="Cambiar foto">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" width="13" height="13">
+                <path d="M11.5 2.5l2 2-8 8H3.5v-2l8-8z"/>
+              </svg>
+            </label>
+            <input type="file" id="avatar-input" accept="image/*" style="display:none" onchange="handleAvatarFile(this)"/>
+          </div>
+          <div class="acct-avatar-info">
+            <div class="acct-username" id="acct-username">—</div>
+            <div class="acct-user-email" id="acct-email-display">—</div>
+            <div class="acct-avatar-actions">
+              <label class="btn btn-secondary btn-sm" for="avatar-input" style="cursor:pointer">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" width="13" height="13">
+                  <path d="M8 2v8M5 7l3 3 3-3"/>
+                  <rect x="2" y="12" width="12" height="2" rx="1"/>
+                </svg>
+                Subir foto
+              </label>
+              <button class="btn btn-ghost btn-sm" id="btn-remove-photo" onclick="removePhoto()" style="display:none">
+                Quitar foto
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== NOMBRE DE VISUALIZACIÓN ===== -->
+      <div class="acct-section">
+        <div class="acct-section-header">
+          <div class="acct-section-title">Nombre de visualización</div>
+          <div class="acct-section-desc">Este nombre aparece en la barra lateral y en tu perfil</div>
+        </div>
+        <div style="margin-bottom:10px;font-size:13px;color:var(--text-muted)">
+          Nombre actual: <strong id="acct-display-name" style="color:var(--text)">—</strong>
+        </div>
+        <div class="acct-form-row">
+          <div class="form-group" style="flex:1;margin:0">
+            <label class="form-label">Nuevo nombre de visualización</label>
+            <input type="text" class="form-control" id="new-display-name"
+                   placeholder="Nombre que verás en el sidebar" autocomplete="off"
+                   onkeydown="if(event.key==='Enter') saveDisplayName()"/>
+          </div>
+          <button class="btn btn-primary" onclick="saveDisplayName()" style="align-self:flex-end">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13">
+              <polyline points="2 8 6 12 14 4"/>
+            </svg>
+            Guardar
+          </button>
+        </div>
+      </div>
+
+      <!-- ===== CORREO ELECTRÓNICO ===== -->
+      <div class="acct-section">
+        <div class="acct-section-header">
+          <div class="acct-section-title">Correo electrónico</div>
+          <div class="acct-section-desc">Úsalo para iniciar sesión y recuperar tu contraseña</div>
+        </div>
+        <div class="acct-form-row">
+          <div class="form-group" style="flex:1;margin:0">
+            <label class="form-label">Nuevo correo electrónico</label>
+            <input type="email" class="form-control" id="new-email"
+                   placeholder="correo@gmail.com" autocomplete="email"
+                   onkeydown="if(event.key==='Enter') saveEmail()"/>
+          </div>
+          <button class="btn btn-primary" onclick="saveEmail()" style="align-self:flex-end">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13">
+              <polyline points="2 8 6 12 14 4"/>
+            </svg>
+            Guardar
+          </button>
+        </div>
+      </div>
+
+      <!-- ===== CONTRASEÑA ===== -->
+      <div class="acct-section">
+        <div class="acct-section-header">
+          <div class="acct-section-title">Contraseña</div>
+          <div class="acct-section-desc">Elige una contraseña segura de al menos 6 caracteres</div>
+        </div>
+        <div class="acct-pass-fields">
+          <div class="form-group">
+            <label class="form-label">Contraseña actual</label>
+            <div class="eye-wrap">
+              <input type="password" class="form-control" id="current-pass"
+                     placeholder="Tu contraseña actual" autocomplete="current-password"/>
+              <button class="btn-eye" type="button" onclick="toggleEye('current-pass',this)" tabindex="-1">
+                <svg class="icon-eye-show" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="icon-eye-hide" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Nueva contraseña</label>
+            <div class="eye-wrap">
+              <input type="password" class="form-control" id="new-pass"
+                     placeholder="Mínimo 6 caracteres" autocomplete="new-password"/>
+              <button class="btn-eye" type="button" onclick="toggleEye('new-pass',this)" tabindex="-1">
+                <svg class="icon-eye-show" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="icon-eye-hide" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Confirmar nueva contraseña</label>
+            <div class="eye-wrap">
+              <input type="password" class="form-control" id="confirm-pass"
+                     placeholder="Repite la nueva contraseña" autocomplete="new-password"
+                     onkeydown="if(event.key==='Enter') savePassword()"/>
+              <button class="btn-eye" type="button" onclick="toggleEye('confirm-pass',this)" tabindex="-1">
+                <svg class="icon-eye-show" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="icon-eye-hide" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+              </button>
+            </div>
+          </div>
+          <div>
+            <button class="btn btn-primary" onclick="savePassword()">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13">
+                <polyline points="2 8 6 12 14 4"/>
+              </svg>
+              Cambiar contraseña
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== ZONA DE PELIGRO ===== -->
+      <div class="acct-section acct-danger-zone">
+        <div class="acct-section-header">
+          <div class="acct-section-title">Zona de peligro</div>
+          <div class="acct-section-desc">
+            Esta acción es irreversible. Se eliminará permanentemente tu cuenta y se cerrará tu sesión.
+          </div>
+        </div>
+        <button class="btn btn-danger" onclick="confirmDeleteAccount()">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14">
+            <polyline points="2 4 14 4"/>
+            <path d="M5 4V2h6v2"/>
+            <path d="M6 7v5M10 7v5"/>
+            <rect x="3" y="4" width="10" height="10" rx="1"/>
+          </svg>
+          Eliminar cuenta
+        </button>
+      </div>
+
+    </div><!-- /acct-wrap -->
+  </main>
+</div>
+
+<script src="js/app.js"></script>
+<script src="js/cuenta.js"></script>
+</body>
+</html>

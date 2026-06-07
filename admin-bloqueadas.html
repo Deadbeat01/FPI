@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cuentas bloqueadas — Admin</title>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <link rel="stylesheet" href="css/admin.css"/>
+</head>
+<body>
+<div class="admin-layout">
+  <aside class="admin-sidebar" id="admin-sidebar"></aside>
+
+  <main class="admin-main">
+    <div class="admin-page-header">
+      <h1 class="admin-page-title">Cuentas bloqueadas</h1>
+      <p class="admin-page-sub">Cuentas bloqueadas por intentos fallidos de inicio de sesión</p>
+    </div>
+
+    <div class="admin-section">
+      <div class="admin-section-header">
+        <span class="admin-section-title">Cuentas con acceso restringido</span>
+        <button class="btn btn-secondary btn-sm" onclick="loadBlocked()">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" width="13" height="13">
+            <polyline points="1 4 1 10 7 10"/>
+            <path d="M3.51 15a9 9 0 102.13-9.36L1 10"/>
+          </svg>
+          Actualizar
+        </button>
+      </div>
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Docente</th>
+              <th style="text-align:center">Intentos fallidos</th>
+              <th>Bloqueado hasta</th>
+              <th style="text-align:center">Acción</th>
+            </tr>
+          </thead>
+          <tbody id="blocked-tbody">
+            <tr><td colspan="4" style="text-align:center;padding:32px;color:var(--text-muted)">Cargando...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="js/app.js"></script>
+<script src="js/admin.js"></script>
+<script src="js/admin-bloqueadas.js"></script>
+</body>
+</html>

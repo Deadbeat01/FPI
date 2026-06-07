@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Alumno — Gestión Académica</title>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <link rel="stylesheet" href="css/alumnoespecifico.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.6.0/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <main class="main-content">
+    <div class="breadcrumb">
+      <a onclick="window.location.href='alumnos.html'">Alumnos</a>
+      <span class="breadcrumb-sep">›</span>
+      <span id="bc-student">Alumno</span>
+    </div>
+
+    <div class="page-header">
+      <div>
+        <div class="student-section-label" id="student-section-label"></div>
+        <h1 class="page-title" id="page-title">Cargando...</h1>
+      </div>
+      <button class="btn btn-secondary" onclick="exportPDF()">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" width="13" height="13"><path d="M8 2v8M5 7l3 3 3-3"/><rect x="2" y="12" width="12" height="2" rx="1"/></svg>
+        Exportar a PDF
+      </button>
+    </div>
+
+    <div id="sections-container"></div>
+
+    <!-- OBSERVACIONES -->
+    <div class="obs-card" id="obs-card">
+      <div class="obs-card-header">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><path d="M14 9.5V13a1 1 0 01-1 1H3a1 1 0 01-1-1V4a1 1 0 011-1h3.5"/><path d="M9.5 1H15v5.5"/><line x1="15" y1="1" x2="8" y2="8"/></svg>
+        <span class="obs-card-title">Observaciones</span>
+      </div>
+      <div id="obs-display" class="obs-display obs-empty">No hay observaciones</div>
+      <div class="obs-edit-area">
+        <textarea class="form-control obs-textarea" id="obs-textarea" maxlength="200"
+                  placeholder="Escribe una observación sobre este alumno..."
+                  oninput="document.getElementById('obs-char-count').textContent=this.value.length"></textarea>
+        <div class="obs-edit-footer">
+          <span class="obs-counter"><span id="obs-char-count">0</span>/200</span>
+          <button class="btn btn-primary btn-sm" onclick="saveObservation()">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><polyline points="2 8 6 12 14 4"/></svg>
+            Guardar
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script src="js/app.js"></script>
+<script src="js/alumnoespecifico.js"></script>
+</body>
+</html>

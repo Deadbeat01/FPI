@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Horarios — Gestión Académica</title>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <link rel="stylesheet" href="css/horarios.css"/>
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <main class="main-content">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Horarios</h1>
+        <p class="page-subtitle">Vista semanal de clases</p>
+      </div>
+    </div>
+
+    <div id="empty-state" class="empty-state" style="display:none">
+      <div class="empty-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      </div>
+      <div class="empty-title">Sin horarios registrados</div>
+      <div class="empty-text">Crea un curso con horario desde la sección Cursos.</div>
+    </div>
+
+    <div class="table-wrapper" id="schedule-table-wrapper">
+      <table id="schedule-table"></table>
+    </div>
+  </main>
+</div>
+
+<script src="js/app.js"></script>
+<script src="js/horarios.js"></script>
+</body>
+</html>

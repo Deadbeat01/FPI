@@ -1,0 +1,119 @@
+/* =========================================
+   CONTACTANOS.CSS
+   ========================================= */
+
+.contact-intro {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  max-width: 680px;
+  margin-bottom: 32px;
+}
+
+/* ---- LAYOUT ---- */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* ---- SHARED CARD ---- */
+.contact-info-card,
+.contact-form-card {
+  background: var(--surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  box-shadow: var(--shadow-sm);
+}
+
+.contact-section-title {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 22px;
+}
+
+/* ---- CONTACT INFO ITEMS ---- */
+.contact-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border-light);
+}
+.contact-info-item:last-child { border-bottom: none; padding-bottom: 0; }
+.contact-info-item:first-of-type { padding-top: 0; }
+
+.contact-info-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.contact-icon-blue   { background: var(--accent-subtle); color: var(--accent); }
+.contact-icon-green  { background: var(--green-light);  color: var(--green);  }
+.contact-icon-yellow { background: var(--yellow-light); color: var(--yellow); }
+
+.contact-info-label {
+  font-size: 11.5px;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 3px;
+}
+.contact-info-value {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text);
+}
+.contact-info-sub {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* ---- FORM ---- */
+.ct-textarea {
+  resize: vertical;
+  min-height: 120px;
+  max-height: 260px;
+  line-height: 1.6;
+}
+
+.ct-char-counter {
+  text-align: right;
+  font-size: 11.5px;
+  color: var(--text-light);
+  margin-top: 5px;
+  transition: color var(--transition);
+}
+.ct-char-counter.near-limit { color: var(--yellow); }
+.ct-char-counter.at-limit   { color: var(--red);    }
+
+.ct-submit-btn {
+  width: 100%;
+  justify-content: center;
+  padding: 11px;
+  font-size: 14px;
+  margin-top: 4px;
+  gap: 8px;
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 900px) {
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .contact-info-card,
+  .contact-form-card { padding: 20px 16px; }
+}

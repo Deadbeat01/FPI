@@ -1,0 +1,106 @@
+/* =========================================
+   HORARIOS.CSS
+   ========================================= */
+
+#schedule-table-wrapper table {
+  min-width: 600px;
+}
+
+/* Override default hover so colored cells keep their bg */
+#schedule-table tbody tr:hover {
+  background: transparent;
+}
+
+/* --- Time header column --- */
+.time-col {
+  width: 72px;
+  min-width: 72px;
+}
+
+/* --- Cabeceras de días centradas --- */
+#schedule-table thead th:not(.time-col) {
+  text-align: center;
+}
+
+/* --- Time label cells --- */
+.time-cell {
+  font-variant-numeric: tabular-nums;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  white-space: nowrap;
+  text-align: right;
+  padding: 8px 14px 8px 10px !important;
+  background: var(--surface-alt);
+  border-right: 1px solid var(--border-light);
+}
+
+/* --- Row height fijo para proporciones consistentes --- */
+#schedule-table tbody tr td {
+  height: 34px;
+  box-sizing: border-box;
+}
+
+/* --- Filas de media hora (:30) --- */
+.half-hour-row td {
+  border-top: none !important;
+}
+
+.half-time-cell {
+  background: var(--surface-alt) !important;
+  border-right: 1px solid var(--border-light);
+  position: relative;
+}
+
+.half-time-cell::after {
+  content: '';
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  width: 6px;
+  height: 1px;
+  background: var(--border);
+  transform: translateY(-50%);
+}
+
+/* --- Empty slots --- */
+.empty-slot {
+  background: var(--bg);
+  min-height: 34px;
+}
+
+.half-slot {
+  background: color-mix(in srgb, var(--bg) 85%, var(--surface-alt) 15%);
+}
+
+/* --- Course slots --- */
+.course-slot {
+  vertical-align: top;
+  padding: 8px 12px !important;
+  transition: filter 0.15s ease;
+}
+
+.course-slot:hover {
+  filter: brightness(0.96);
+}
+
+.slot-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.slot-sections {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.slot-time {
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted);
+  margin-top: 5px;
+  opacity: 0.85;
+}

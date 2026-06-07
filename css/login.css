@@ -1,0 +1,279 @@
+/* =========================================
+   LOGIN.CSS — Estilos de login.html
+   ========================================= */
+
+/* Override body background for login page */
+body.login-body {
+  background: var(--sidebar-bg);
+  background-image:
+    radial-gradient(ellipse at 15% 85%, rgba(59,111,160,0.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 15%, rgba(74,140,111,0.12) 0%, transparent 55%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 16px;
+}
+
+/* ---- CENTERING WRAPPER ---- */
+.login-wrap {
+  width: 100%;
+  max-width: 448px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* ---- BRANDING HEADER ---- */
+.login-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
+  padding: 0 4px;
+}
+
+.lh-logo {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(59,111,160,0.45);
+  flex-shrink: 0;
+  letter-spacing: -0.5px;
+}
+
+.lh-name {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--sidebar-text-bright);
+  letter-spacing: -0.2px;
+  line-height: 1.2;
+}
+
+.lh-tagline {
+  display: block;
+  font-size: 12px;
+  color: var(--sidebar-text);
+  margin-top: 2px;
+}
+
+/* ---- CARD ---- */
+.lcard {
+  display: none;
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  padding: 36px 32px 28px;
+  box-shadow: 0 12px 48px rgba(0,0,0,0.28), 0 2px 8px rgba(0,0,0,0.12);
+  position: relative;
+  animation: lcardIn 0.22s ease;
+}
+
+.lcard.active {
+  display: block;
+}
+
+@keyframes lcardIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- BACK BUTTON ---- */
+.lcard-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  color: var(--text-light);
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 22px;
+  transition: color var(--transition);
+}
+.lcard-back:hover { color: var(--accent); }
+
+/* ---- ICON BADGE ---- */
+.lcard-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.lcard-icon-yellow { background: var(--yellow-light); color: var(--yellow); }
+.lcard-icon-blue   { background: var(--accent-subtle); color: var(--accent); }
+.lcard-icon-green  { background: var(--green-light);  color: var(--green);  }
+
+/* ---- CARD TITLE & SUBTITLE ---- */
+.lcard-title {
+  font-family: var(--font-serif);
+  font-size: 23px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+  letter-spacing: -0.3px;
+}
+
+.lcard-sub {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 26px;
+  line-height: 1.55;
+}
+
+.lcard-highlight {
+  color: var(--accent);
+  font-style: normal;
+}
+
+/* ---- FULL-WIDTH BUTTON ---- */
+.btn-block {
+  width: 100%;
+  justify-content: center;
+  padding: 11px 16px;
+  font-size: 14px;
+  margin-top: 2px;
+}
+
+/* ---- LINKS ROW ---- */
+.lcard-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 22px;
+  flex-wrap: wrap;
+}
+
+.llink {
+  font-size: 12.5px;
+  color: var(--accent);
+  cursor: pointer;
+  text-decoration: none;
+  transition: color var(--transition);
+  user-select: none;
+}
+.llink:hover {
+  color: var(--accent-light);
+  text-decoration: underline;
+}
+
+.llink-dot {
+  color: var(--border);
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* ---- PASSWORD EYE TOGGLE ---- */
+.eye-wrap {
+  position: relative;
+}
+.eye-wrap .form-control {
+  padding-right: 42px;
+}
+
+.btn-eye {
+  position: absolute;
+  right: 11px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 3px;
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  transition: color var(--transition);
+  line-height: 0;
+}
+.btn-eye:hover { color: var(--text-muted); }
+
+.btn-eye svg { width: 18px; height: 18px; display: block; }
+.btn-eye .icon-eye-hide { display: none; }
+.btn-eye.visible .icon-eye-show { display: none; }
+.btn-eye.visible .icon-eye-hide { display: block; }
+
+/* ---- OTP CODE INPUTS ---- */
+.code-inputs {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 6px 0 22px;
+}
+
+.code-digit {
+  width: 52px;
+  height: 58px;
+  text-align: center;
+  font-size: 24px;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  color: var(--text);
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+  caret-color: transparent;
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+}
+.code-digit::-webkit-outer-spin-button,
+.code-digit::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+.code-digit:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(59,111,160,0.14);
+}
+.code-digit.filled {
+  background: var(--accent-subtle);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ---- READONLY FIELD ---- */
+.form-readonly {
+  background: var(--surface-alt) !important;
+  color: var(--text-muted) !important;
+  cursor: default !important;
+  border-color: var(--border-light) !important;
+  user-select: none;
+}
+
+/* ---- DIVIDER ---- */
+.lcard-divider {
+  height: 1px;
+  background: var(--border-light);
+  margin: 20px 0;
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 500px) {
+  body.login-body { padding: 24px 12px; }
+
+  .lcard { padding: 28px 20px 22px; }
+  .lcard-title { font-size: 21px; }
+  .lcard-sub { margin-bottom: 20px; }
+
+  .code-digit { width: 42px; height: 50px; font-size: 20px; gap: 6px; }
+  .code-inputs { gap: 7px; }
+
+  .login-header { margin-bottom: 22px; }
+  .lh-logo { width: 40px; height: 40px; font-size: 16px; }
+  .lh-name { font-size: 17px; }
+}
